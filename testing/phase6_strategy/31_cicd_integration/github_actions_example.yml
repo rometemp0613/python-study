@@ -1,0 +1,149 @@
+# GitHub Actions 워크플로우 예시
+#
+# 이 파일은 예지보전 프로젝트의 CI/CD 파이프라인을 정의합니다.
+# 실제 프로젝트에서는 .github/workflows/ 디렉토리에 위치해야 합니다.
+#
+# 워크플로우 단계:
+# 1. 코드 체크아웃
+# 2. Python 환경 설정
+# 3. 의존성 설치
+# 4. 코드 린팅 (flake8)
+# 5. 단위 테스트 (pytest)
+# 6. 커버리지 확인
+# 7. 결과 업로드
+
+name: 예지보전 시스템 CI
+
+# 트리거 조건: main 또는 develop 브랜치에 푸시하거나 PR을 생성할 때
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+# 환경 변수 (전체 워크플로우에서 사용)
+env:
+  PYTHON_DEFAULT: '3.11'
+  MIN_COVERAGE: 80
+
+jobs:
+  # ============================================================
+  # Job 1: 린팅 (코드 스타일 검사)
+  # ============================================================
+  lint:
+    name: 코드 린팅
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: 코드 체크아웃
+      uses: actions/checkout@v4
+
+    - name: Python 설정
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ env.PYTHON_DEFAULT }}
+
+    - name: 린팅 도구 설치
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 mypy
+
+    - name: flake8 린팅
+      run: |
+        flake8 src/ --max-line-length=120 --count --show-source --statistics
+
+    - name: mypy 타입 검사
+      run: |
+        mypy src/ --ignore-missing-imports
+
+  # ============================================================
+  # Job 2: 단위 테스트 (다중 Python 버전)
+  # ============================================================
+  test:
+    name: 테스트 (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    needs: lint  # 린팅이 통과해야 실행
+
+    strategy:
+      matrix:
+        python-version: ['3.9', '3.10', '3.11', '3.12']
+      fail-fast: false  # 한 버전이 실패해도 다른 버전 계속 실행
+
+    steps:
+    - name: 코드 체크아웃
+      uses: actions/checkout@v4
+
+    - name: Python ${{ matrix.python-version }} 설정
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: 의존성 캐싱
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('requirements*.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: 의존성 설치
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install -r requirements-dev.txt
+
+    - name: 단위 테스트 실행
+      run: |
+        pytest tests/unit/ -v --tb=short \
+          --junitxml=test-results-${{ matrix.python-version }}.xml
+
+    - name: 통합 테스트 실행
+      run: |
+        pytest tests/integration/ -v --tb=short \
+          --junitxml=integration-results-${{ matrix.python-version }}.xml
+
+    - name: 테스트 결과 업로드
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: test-results-${{ matrix.python-version }}
+        path: |
+          test-results-*.xml
+          integration-results-*.xml
+
+  # ============================================================
+  # Job 3: 커버리지 확인
+  # ============================================================
+  coverage:
+    name: 코드 커버리지
+    runs-on: ubuntu-latest
+    needs: test  # 테스트가 통과해야 실행
+
+    steps:
+    - name: 코드 체크아웃
+      uses: actions/checkout@v4
+
+    - name: Python 설정
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ env.PYTHON_DEFAULT }}
+
+    - name: 의존성 설치
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+        pip install -r requirements-dev.txt
+
+    - name: 커버리지 측정
+      run: |
+        pytest tests/ \
+          --cov=src \
+          --cov-report=xml:coverage.xml \
+          --cov-report=term-missing \
+          --cov-fail-under=${{ env.MIN_COVERAGE }}
+
+    - name: 커버리지 리포트 업로드
+      uses: actions/upload-artifact@v4
+      with:
+        name: coverage-report
+        path: coverage.xml

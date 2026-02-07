@@ -1,0 +1,30 @@
+[
+    {
+        "equipment_id": "MOTOR_001",
+        "name": "A동 주요 모터",
+        "priority": "urgent",
+        "days_until_maintenance": 0,
+        "action": "즉시 점검 필요"
+    },
+    {
+        "equipment_id": "PUMP_003",
+        "name": "냉각수 펌프",
+        "priority": "scheduled",
+        "days_until_maintenance": 0,
+        "action": "점검 예약 필요"
+    },
+    {
+        "equipment_id": "PUMP_002",
+        "name": "B동 보조 펌프",
+        "priority": "routine",
+        "days_until_maintenance": 15,
+        "action": "정기 점검 예정"
+    },
+    {
+        "equipment_id": "TURBINE_001",
+        "name": "C동 터빈",
+        "priority": "deferred",
+        "days_until_maintenance": 60,
+        "action": "다음 정기 점검까지 대기"
+    }
+]
