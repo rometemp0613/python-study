@@ -1,0 +1,15 @@
+{
+    "sensor_id": "VIB_001",
+    "sensor_type": "vibration",
+    "location": "A동 2층 모터실",
+    "statistics": {
+        "count": 10,
+        "mean": 5.5,
+        "std_dev": 2.87,
+        "min": 1.0,
+        "max": 10.0,
+        "range": 9.0
+    },
+    "status": "unstable",
+    "unit": "mm/s"
+}

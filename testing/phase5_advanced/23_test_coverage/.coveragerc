@@ -1,0 +1,59 @@
+# .coveragerc - 커버리지 측정 설정 파일
+#
+# 이 파일은 coverage.py와 pytest-cov가 사용하는 설정 파일이다.
+# pyproject.toml의 [tool.coverage.*] 섹션으로도 동일한 설정이 가능하다.
+
+[run]
+# 측정 대상 소스 코드
+source = .
+
+# 브랜치 커버리지 활성화 (라인 커버리지보다 엄격)
+branch = True
+
+# 측정에서 제외할 파일 패턴
+omit =
+    # 테스트 파일은 커버리지 측정 대상이 아님
+    test_*.py
+    */exercises/*
+    # 설정 파일
+    conftest.py
+    setup.py
+
+[report]
+# 커버리지 리포트에서 제외할 라인 패턴
+exclude_lines =
+    # 표준 제외 패턴
+    pragma: no cover
+
+    # 디버그 전용 코드
+    def __repr__
+    def __str__
+
+    # 방어적 코드
+    raise NotImplementedError
+    raise AssertionError
+
+    # 스크립트 진입점
+    if __name__ == .__main__
+
+    # 타입 체킹 전용
+    if TYPE_CHECKING
+
+    # pass 문
+    pass
+
+# 미실행 라인 번호 표시
+show_missing = True
+
+# 최소 커버리지 퍼센트 (미달 시 실패)
+fail_under = 80
+
+# 정밀도 (소수점 자릿수)
+precision = 1
+
+[html]
+# HTML 리포트 출력 디렉토리
+directory = htmlcov
+
+# 리포트 제목
+title = 설비 분류기 커버리지 리포트
