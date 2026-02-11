@@ -82,9 +82,28 @@
 - **모델**: Isolation Forest, Autoencoder, LSTM
 - **파이프라인**: 데이터 수집 → 전처리 → 피처 추출 → 모델 학습 → 예측 → 알람
 
+## 복습 시스템 (3단계 진행)
+
+```
+review/
+├── 1-new/terms.md       ← 새로 배운 용어/개념
+├── 2-practicing/terms.md ← 복습 중 (1차 퀴즈 통과)
+└── 3-mastered/terms.md   ← 완벽 암기 (2차 퀴즈 통과)
+```
+
+### 복습 프로세스
+
+1. **매 수업 시작 시**: `2-practicing/terms.md`에서 랜덤 퀴즈 출제
+2. **퀴즈 결과에 따라 승급**:
+   - 2-practicing에서 정답 → `3-mastered`로 이동
+   - 오답 → 현재 단계에 유지
+3. **챕터 학습 후**: 틀린 것/몰랐던 것을 `2-practicing`에 추가
+4. **새로 배운 개념**: `1-new`에 추가 → 다음 세션 퀴즈에서 통과하면 `2-practicing`으로
+
 ## 학습 완료 후 할 일
 
 - `notes/` 폴더에 학습 노트 작성 (해당 Phase의 핵심 요약)
+- `review/` 폴더에 새로 배운 용어/틀린 것 추가
 - `logs/` 폴더에 학습 일지 작성 (날짜별: `YYYY-MM-DD.md`)
 - README.md의 체크리스트 업데이트 ([ ] → [x])
 - README.md의 학습 일지 테이블에 기록 추가
