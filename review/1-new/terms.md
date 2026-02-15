@@ -10,3 +10,4 @@
 - **uv add**: 패키지 설치 명령어. pyproject.toml과 uv.lock을 자동 업데이트.
 - **uv run**: 가상환경 안에서 명령어를 실행. `uv run python main.py` 형태로 사용.
 - **ipykernel**: VS Code에서 Jupyter 노트북을 실행할 때 Python 커널을 연결해주는 패키지.
+- **WSL2 (Windows Subsystem for Linux)**: Windows 안에서 Linux 환경을 실행하는 기능. Mac과 동일한 개발환경을 만들 수 있음.

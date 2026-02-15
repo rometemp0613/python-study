@@ -92,7 +92,36 @@ VS Code 필수 확장:
 - **Jupyter** (Microsoft)
 - **Pylance** (Microsoft)
 
-### 5. .gitignore 설정
+추천 확장:
+- **Even Better TOML** — `pyproject.toml` 구문 강조
+- **GitLens** — git 히스토리, blame
+- **indent-rainbow** — 들여쓰기 색상 표시 (Python은 들여쓰기가 문법이라 유용)
+
+### 5. VS Code에서 WSL 연결 (Windows만 해당)
+
+Windows에서는 VS Code를 WSL로 연결해야 한다. 안 하면 PowerShell 환경에서 돌아가서 Mac과 다른 환경이 됨.
+
+```
+  Windows (PowerShell)           WSL2 (Linux)
+  ┌──────────────────┐          ┌──────────────────┐
+  │ VS Code 여기서 열면 │          │ uv, .venv 여기 있음 │
+  │ Python? 모름       │    ✗    │ Python 3.12 ✓     │
+  └──────────────────┘          └──────────────────┘
+        → WSL 연결하면 해결!
+```
+
+1. **WSL 확장** 설치 (`ms-vscode-remote.remote-wsl`)
+2. `Ctrl+Shift+P` → `WSL: Connect to WSL` 선택
+3. 왼쪽 하단에 `WSL: Ubuntu` 표시 확인
+4. `파일 → 폴더 열기` → `/mnt/c/git/study/python-study` 열기
+5. **WSL 안에서 Python/Jupyter/Pylance 확장 다시 설치** (WSL과 Windows 확장이 별도 관리됨)
+
+확인 방법:
+- 하단 왼쪽: `WSL: Ubuntu`
+- `.py` 파일 열면 하단 오른쪽: `Python 3.12.3 ('.venv': venv)`
+- 터미널: `dam@DESKTOP:~$` 형태 (PowerShell이 아닌 bash)
+
+### 6. .gitignore 설정
 
 ```gitignore
 __pycache__/
@@ -106,7 +135,7 @@ __pycache__/
 .ipynb_checkpoints/
 ```
 
-### 6. 다른 PC에서 환경 복원 (Mac 등)
+### 7. 다른 PC에서 환경 복원 (Mac 등)
 
 ```bash
 # uv 설치
