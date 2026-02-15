@@ -20,3 +20,17 @@
 - **기본값 인자 (default argument)**: `def func(a, b=10):` 처럼 함수 인자에 기본값 지정. 반드시 일반 인자 뒤에 와야 함.
 - **docstring**: 함수 정의 바로 아래 `"""설명"""` 으로 작성. VS Code 자동완성 팝업에 표시됨.
 - **언패킹 (unpacking)**: `lo, hi, avg = analyze(data)` 처럼 여러 반환값을 한 번에 변수에 할당.
+
+## 2026-02-16 (자료구조)
+
+- **슬라이싱 (slicing)**: `data[1:4]`로 리스트 일부를 잘라냄. 끝 인덱스는 미포함. `data[:3]`(앞 3개), `data[-2:]`(뒤 2개).
+- **sort() vs sorted()**: `sort()`는 원본을 변경, `sorted()`는 원본 유지하고 새 리스트 반환.
+- **튜플 (tuple)**: `(1, 2, 3)` 형태. 리스트와 비슷하지만 변경 불가. 고정 데이터(스펙, 기록)에 사용.
+- **dict.get(키, 기본값)**: 딕셔너리에서 키가 없을 때 에러 대신 기본값 반환. `sensor.get("status", "미설정")`.
+- **dict.items()**: 딕셔너리의 키+값을 동시에 순회. `for k, v in data.items():`. 키만은 `.keys()`, 값만은 `.values()`.
+- **집합 연산**: `a & b`(교집합), `a | b`(합집합), `a - b`(차집합). 알람 분석에서 "연속 알람", "신규 알람" 구할 때 유용.
+- **리스트 컴프리헨션**: `[val for val in data if 조건]`. for문을 한 줄로 압축. 대괄호 `[]` 사용.
+- **딕셔너리 컴프리헨션**: `{k: v for k, v in data.items() if 조건}`. 중괄호 `{}` + 콜론 `:` 사용.
+- **집합 컴프리헨션**: `{val for val in data}`. 중괄호 `{}`만 사용. 콜론 없으면 집합.
+- **zip()**: 여러 리스트를 묶어서 동시 순회. `for a, b in zip(list1, list2):`. 딕셔너리 만들기: `dict(zip(keys, values))`.
+- **lambda**: 이름 없는 한 줄 함수. `lambda x: x[1]`은 `def f(x): return x[1]`과 같음. `sorted()`의 `key` 인자에 자주 사용.

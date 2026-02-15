@@ -240,6 +240,7 @@ generate_report(
 )
 
 
+
 def analyze_pressure(pressure):
     if pressure < 100:
         return "저압"
@@ -264,3 +265,5 @@ pressures = [150, 210, 95, 180, 310, 275, 190]
 for i, ele in enumerate(pressures):
     print(f"센서{i+1} 값: {ele}, 상태: {analyze_pressure(ele)}")
 
+
+# %%
