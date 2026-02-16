@@ -71,3 +71,25 @@
 
 ---
 
+## 2026-02-17 (Day 2) - 객체지향 프로그래밍
+
+### 오늘 한 것
+- OOP 4대 개념 학습 (클래스/객체, 상속, 캡슐화, 다형성)
+- 실습: 공장 설비 모니터링 시스템 (Sensor, TempSensor, VibSensor)
+- 연습 문제 3개 풀이 (PressureSensor, Equipment, SafePressureSensor)
+- 퀴즈 3개 통과
+
+### 배운 것
+- `class`로 설계도 만들고, 객체로 찍어내는 구조
+- `self`는 파이썬이 자동으로 넣어줌 (호출 시 안 넣음)
+- `super().__init__()`으로 부모 생성자 호출 필수
+- `@property` + `@setter`로 속성처럼 쓰면서 검증 가능
+- `_`는 약속으로 보호, `__`는 name mangling으로 강한 보호
+- 다형성: 같은 메서드명으로 호출하면 객체마다 다르게 동작
+- `isinstance()`로 객체의 클래스 확인
+
+### 다음 할 것
+- 예외 처리 & 파일 I/O (try/except, with문, 파일 읽기/쓰기)
+
+---
+
