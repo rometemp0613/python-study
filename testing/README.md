@@ -15,8 +15,8 @@ Phase 2: pytest 핵심 기능 (Core pytest)     - 주제 07~11
 Phase 3: Mocking과 격리 (Mocking)           - 주제 12~16
 Phase 4: 실무 코드 테스트 (Real-World)       - 주제 17~21
 Phase 5: 고급 기법과 도구 (Advanced)         - 주제 22~26
-Phase 6: 테스트 전략 (Strategy)             - 주제 27~31
-Phase 7: 예지보전 특화 (Domain-Specific)     - 주제 32~35
+Phase 6: 테스트 전략 (Strategy)             - 주제 27~32
+Phase 7: 예지보전 특화 (Domain-Specific)     - 주제 33~36
 ```
 
 ---
@@ -25,8 +25,8 @@ Phase 7: 예지보전 특화 (Domain-Specific)     - 주제 32~35
 
 ### Phase 1: 기초 다지기 (Foundation)
 
-- [ ] **01. 왜 테스트가 필요한가** (`phase1_foundation/01_why_testing/`)
-  - 핵심: 자동 테스트의 가치, 테스트 피라미드, 리팩토링 안전망
+- [x] **01. 왜 테스트가 필요한가** (`phase1_foundation/01_why_testing/`)
+  - 핵심: 자동 테스트의 가치, 테스트 피라미드, 리팩토링 안전망, **테스트 = 행동 명세 (AI 시대의 경쟁력)**
 - [ ] **02. Python 내장 테스트: unittest & doctest** (`phase1_foundation/02_unittest_doctest/`)
   - 핵심: unittest.TestCase, doctest, 레거시 코드 이해
 - [ ] **03. pytest 기본기** (`phase1_foundation/03_pytest_basics/`)
@@ -95,23 +95,25 @@ Phase 7: 예지보전 특화 (Domain-Specific)     - 주제 32~35
 - [ ] **27. TDD (Test-Driven Development)** (`phase6_strategy/27_tdd/`)
   - 핵심: Red-Green-Refactor, TDD 워크플로우
 - [ ] **28. 테스트 설계 원칙** (`phase6_strategy/28_test_design_principles/`)
-  - 핵심: FIRST 원칙, AAA 패턴, 행위 테스트 vs 구현 테스트
+  - 핵심: FIRST 원칙, AAA 패턴, 행위 테스트 vs 구현 테스트, **스펙 기반 테스트 설계, 통과 기준 먼저 정의하기**
 - [ ] **29. Flaky 테스트 다루기** (`phase6_strategy/29_flaky_tests/`)
   - 핵심: 원인 진단, 해결 패턴
 - [ ] **30. 테스트 안티패턴** (`phase6_strategy/30_anti_patterns/`)
   - 핵심: 구현 결합, 과도한 mocking, 테스트 오염
 - [ ] **31. CI/CD 통합** (`phase6_strategy/31_cicd_integration/`)
   - 핵심: GitHub Actions, JUnit XML, tox, pre-commit
+- [ ] **32. Differential Testing과 Conformance Testing** (`phase6_strategy/32_differential_conformance/`)
+  - 핵심: 참조 구현 비교, 스펙 기반 적합성 검증, 결과 정규화, 마일스톤별 통과 기준
 
 ### Phase 7: 예지보전 특화 테스트 (Domain-Specific)
 
-- [ ] **32. 센서 데이터 수집/처리 테스트** (`phase7_predictive_maintenance/32_testing_sensor_data/`)
+- [ ] **33. 센서 데이터 수집/처리 테스트** (`phase7_predictive_maintenance/33_testing_sensor_data/`)
   - 핵심: 데이터 클리닝, 신호 처리, 피처 추출
-- [ ] **33. 데이터 유효성 검증 테스트** (`phase7_predictive_maintenance/33_testing_data_validation/`)
+- [ ] **34. 데이터 유효성 검증 테스트** (`phase7_predictive_maintenance/34_testing_data_validation/`)
   - 핵심: 스키마 검증, 범위 검증, pandera
-- [ ] **34. 예측 모델 테스트** (`phase7_predictive_maintenance/34_testing_predictive_models/`)
+- [ ] **35. 예측 모델 테스트** (`phase7_predictive_maintenance/35_testing_predictive_models/`)
   - 핵심: ML 파이프라인, 모델 메트릭, 회귀 테스트
-- [ ] **35. 알람/알림 시스템 테스트** (`phase7_predictive_maintenance/35_testing_alerting/`)
+- [ ] **36. 알람/알림 시스템 테스트** (`phase7_predictive_maintenance/36_testing_alerting/`)
   - 핵심: 임계값 알람, 알림 mock, 중복 제거
 
 ---
@@ -143,14 +145,15 @@ Phase 7: 예지보전 특화 (Domain-Specific)     - 주제 32~35
 
 | 날짜 | Phase | 주제 | 주요 내용 | 비고 |
 |------|-------|------|----------|------|
+| 2026-02-27 | Phase 1 | 01. 왜 테스트가 필요한가 | 테스트 피라미드, 리팩토링 안전망, AI 시대 테스트=행동명세 | 커리큘럼 수정 후 첫 수업 |
 
 ---
 
 ## 진행 현황
 
-- **총 항목**: 35개
-- **완료**: 0개
-- **진행률**: 0%
+- **총 항목**: 36개
+- **완료**: 1개
+- **진행률**: 3%
 
 ---
 
@@ -161,7 +164,7 @@ python-study/testing/
 ├── README.md                          # 진도 체크리스트 (현재 파일)
 ├── CLAUDE.md                          # 테스트 학습 전용 Claude 지침서
 ├── phase1_foundation/                 # Phase 1: 기초 다지기
-│   ├── 01_why_testing/
+│   ├── 01_why_testing/                # + AI 시대 테스트의 전략적 가치
 │   ├── 02_unittest_doctest/
 │   ├── 03_pytest_basics/
 │   ├── 04_test_organization/
@@ -171,8 +174,8 @@ python-study/testing/
 ├── phase3_mocking/                    # Phase 3: Mocking
 ├── phase4_real_world/                 # Phase 4: 실무 패턴
 ├── phase5_advanced/                   # Phase 5: 고급 기법
-├── phase6_strategy/                   # Phase 6: 전략
-├── phase7_predictive_maintenance/     # Phase 7: 예지보전 특화
+├── phase6_strategy/                   # Phase 6: 전략 (+ 32_differential_conformance/)
+├── phase7_predictive_maintenance/     # Phase 7: 예지보전 특화 (33~36)
 ├── notes/                             # 주제별 학습 노트
 └── logs/                              # 학습 일지
 ```
