@@ -72,7 +72,7 @@ review/
 
 ### 복습 프로세스
 
-1. **매 수업 시작 시**: `2-practicing/terms.md`에서 랜덤 퀴즈 출제
+1. **매 수업 시작 시**: `1-new/terms.md`와 `2-practicing/terms.md`에서 랜덤 퀴즈 출제
 2. **퀴즈 결과에 따라 승급**:
    - 2-practicing에서 정답 → `3-mastered`로 이동
    - 오답 → 현재 단계에 유지
