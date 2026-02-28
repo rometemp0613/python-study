@@ -16,7 +16,7 @@ Phase 3: Mocking과 격리 (Mocking)           - 주제 12~16
 Phase 4: 실무 코드 테스트 (Real-World)       - 주제 17~21
 Phase 5: 고급 기법과 도구 (Advanced)         - 주제 22~26
 Phase 6: 테스트 전략 (Strategy)             - 주제 27~32
-Phase 7: 예지보전 특화 (Domain-Specific)     - 주제 33~36
+Phase 7: 예지보전 특화 (Domain-Specific)     - 주제 33~37
 ```
 
 ---
@@ -32,7 +32,7 @@ Phase 7: 예지보전 특화 (Domain-Specific)     - 주제 33~36
 - [ ] **03. pytest 기본기** (`phase1_foundation/03_pytest_basics/`)
   - 핵심: 테스트 발견 규칙, assert, pytest.approx(), CLI 옵션
 - [ ] **04. 테스트 구조와 프로젝트 조직** (`phase1_foundation/04_test_organization/`)
-  - 핵심: 디렉토리 레이아웃, 네이밍 컨벤션, conftest.py
+  - 핵심: 디렉토리 레이아웃, 네이밍 컨벤션, conftest.py, 타입 힌트와 mypy 연동
 - [ ] **05. 예외와 에러 핸들링 테스트** (`phase1_foundation/05_testing_exceptions/`)
   - 핵심: pytest.raises(), match, ExceptionInfo, pytest.warns()
 - [ ] **06. 출력 캡처** (`phase1_foundation/06_capturing_output/`)
@@ -69,7 +69,7 @@ Phase 7: 예지보전 특화 (Domain-Specific)     - 주제 33~36
 - [ ] **17. Pandas/NumPy 코드 테스트** (`phase4_real_world/17_testing_pandas_numpy/`)
   - 핵심: assert_frame_equal, assert_array_equal, 엣지 케이스
 - [ ] **18. 파일 I/O와 데이터 파이프라인 테스트** (`phase4_real_world/18_testing_file_io/`)
-  - 핵심: tmp_path, SQLite 인메모리, ETL 테스트
+  - 핵심: tmp_path, SQLite 인메모리, ETL 테스트, pd.read_sql() 검증
 - [ ] **19. 외부 API 상호작용 테스트** (`phase4_real_world/19_testing_apis/`)
   - 핵심: HTTP mock, responses, vcrpy, 재시도 로직
 - [ ] **20. 설정과 환경 테스트** (`phase4_real_world/20_testing_config_env/`)
@@ -115,6 +115,8 @@ Phase 7: 예지보전 특화 (Domain-Specific)     - 주제 33~36
   - 핵심: ML 파이프라인, 모델 메트릭, 회귀 테스트
 - [ ] **36. 알람/알림 시스템 테스트** (`phase7_predictive_maintenance/36_testing_alerting/`)
   - 핵심: 임계값 알람, 알림 mock, 중복 제거
+- [ ] **37. 신호처리 & FFT 코드 테스트** (`phase7_predictive_maintenance/37_testing_signal_processing/`)
+  - 핵심: FFT 결과 검증, 필터링 테스트, 주파수 피처 정확도, scipy.signal/scipy.fft 테스트
 
 ---
 
@@ -152,9 +154,9 @@ Phase 7: 예지보전 특화 (Domain-Specific)     - 주제 33~36
 
 ## 진행 현황
 
-- **총 항목**: 36개
+- **총 항목**: 37개
 - **완료**: 2개
-- **진행률**: 6%
+- **진행률**: 5%
 
 ---
 
