@@ -27,7 +27,7 @@ Phase 7: 예지보전 특화 (Domain-Specific)     - 주제 33~36
 
 - [x] **01. 왜 테스트가 필요한가** (`phase1_foundation/01_why_testing/`)
   - 핵심: 자동 테스트의 가치, 테스트 피라미드, 리팩토링 안전망, **테스트 = 행동 명세 (AI 시대의 경쟁력)**
-- [ ] **02. Python 내장 테스트: unittest & doctest** (`phase1_foundation/02_unittest_doctest/`)
+- [x] **02. Python 내장 테스트: unittest & doctest** (`phase1_foundation/02_unittest_doctest/`)
   - 핵심: unittest.TestCase, doctest, 레거시 코드 이해
 - [ ] **03. pytest 기본기** (`phase1_foundation/03_pytest_basics/`)
   - 핵심: 테스트 발견 규칙, assert, pytest.approx(), CLI 옵션
@@ -146,14 +146,15 @@ Phase 7: 예지보전 특화 (Domain-Specific)     - 주제 33~36
 | 날짜 | Phase | 주제 | 주요 내용 | 비고 |
 |------|-------|------|----------|------|
 | 2026-02-27 | Phase 1 | 01. 왜 테스트가 필요한가 | 테스트 피라미드, 리팩토링 안전망, AI 시대 테스트=행동명세 | 커리큘럼 수정 후 첫 수업 |
+| 2026-02-28 | Phase 1 | 02. unittest & doctest | unittest.TestCase, assert 메서드, setUp/tearDown, doctest, pytest 비교 | - |
 
 ---
 
 ## 진행 현황
 
 - **총 항목**: 36개
-- **완료**: 1개
-- **진행률**: 3%
+- **완료**: 2개
+- **진행률**: 6%
 
 ---
 
