@@ -102,16 +102,27 @@ class TestKelvinToCelsius:
     @pytest.mark.parametrize("kelvin, expected_celsius", [
         # TODO: 최소 4개의 테스트 케이스를 추가하세요
         # 힌트: (273.15, 0), (373.15, 100), (0, -273.15), (310.15, 37)
+        (273.15, 0), 
+        (373.15, 100), 
+        (0, -273.15), 
+        (310.15, 37),
     ])
     def test_변환_parametrize(self, kelvin, expected_celsius):
         """여러 온도값에 대해 변환을 검증한다"""
         # TODO: kelvin_to_celsius 함수를 호출하고 pytest.approx로 비교하세요
-        pytest.skip("TODO: parametrize 테스트를 구현하세요")
+        # assert kelvin_to_celsius(273.15) == pytest.approx(0)
+        # assert kelvin_to_celsius(373.15) == pytest.approx(100)
+        # assert kelvin_to_celsius(0) == pytest.approx(-273.15)
+        # assert kelvin_to_celsius(310.15) == pytest.approx(37)
+        assert kelvin_to_celsius(kelvin) == pytest.approx(expected_celsius)
+        # pytest.skip("TODO: parametrize 테스트를 구현하세요")
 
     def test_절대영도_이하_예외(self):
         """절대영도(0K) 미만이면 ValueError가 발생해야 한다"""
         # TODO: kelvin_to_celsius(-1)에 대한 예외 테스트
-        pytest.skip("TODO: 절대영도 이하 예외 테스트를 구현하세요")
+        with pytest.raises(ValueError):
+            assert kelvin_to_celsius(-1)
+        # pytest.skip("TODO: 절대영도 이하 예외 테스트를 구현하세요")
 
 
 class TestCalculateThermalEfficiency:
@@ -120,22 +131,28 @@ class TestCalculateThermalEfficiency:
     def test_100퍼센트_효율(self):
         """입력과 출력이 같으면 100% 효율"""
         # TODO: calculate_thermal_efficiency(100, 100)이 100.0인지 확인
-        pytest.skip("TODO: 100% 효율 테스트를 구현하세요")
+        assert calculate_thermal_efficiency(100, 100) == pytest.approx(100.0)
+        # pytest.skip("TODO: 100% 효율 테스트를 구현하세요")
 
     def test_50퍼센트_효율(self):
         """출력이 입력의 절반이면 50% 효율"""
         # TODO: calculate_thermal_efficiency(100, 50)이 50.0인지 확인
-        pytest.skip("TODO: 50% 효율 테스트를 구현하세요")
+        assert calculate_thermal_efficiency(100, 50) == pytest.approx(50.0)
+        # pytest.skip("TODO: 50% 효율 테스트를 구현하세요")
 
     def test_입력_에너지_0_예외(self):
         """입력 에너지가 0이면 ValueError 발생"""
+        with pytest.raises(ValueError):
+            calculate_thermal_efficiency(0, 0)
         # TODO: pytest.raises를 사용하세요
-        pytest.skip("TODO: 입력 에너지 0 예외 테스트를 구현하세요")
+        # pytest.skip("TODO: 입력 에너지 0 예외 테스트를 구현하세요")
 
     def test_출력_에너지_음수_예외(self):
         """출력 에너지가 음수이면 ValueError 발생"""
+        with pytest.raises(ValueError):
+            calculate_thermal_efficiency(-1, 100)
         # TODO: pytest.raises를 사용하세요
-        pytest.skip("TODO: 출력 에너지 음수 예외 테스트를 구현하세요")
+        # pytest.skip("TODO: 출력 에너지 음수 예외 테스트를 구현하세요")
 
 
 class TestFindPeakTemperatures:
@@ -144,14 +161,22 @@ class TestFindPeakTemperatures:
     def test_단일_피크(self):
         """하나의 피크가 감지되어야 한다"""
         # TODO: [20, 30, 50, 30, 20] 에서 인덱스 2의 피크 감지
-        pytest.skip("TODO: 단일 피크 테스트를 구현하세요")
+        readings = [20, 30, 50, 30, 20]
+        assert find_peak_temperatures(readings, 5.0) == [{"index": 2, "value": 50, "prominence": 20.0}]
+        #[{"index": i, "value": v, "prominence": p}, ...]
+        # pytest.skip("TODO: 단일 피크 테스트를 구현하세요")
 
     def test_피크_없음(self):
         """오름차순 데이터에서는 피크가 없어야 한다"""
+        readings = [10, 20, 30, 40, 50]
         # TODO: [10, 20, 30, 40, 50]에서 빈 리스트 반환
-        pytest.skip("TODO: 피크 없음 테스트를 구현하세요")
+        assert find_peak_temperatures(readings, 5.0) == pytest.approx([])
+        # pytest.skip("TODO: 피크 없음 테스트를 구현하세요")
 
     def test_최소_데이터_예외(self):
         """3개 미만의 데이터에서는 ValueError 발생"""
         # TODO: pytest.raises 사용
-        pytest.skip("TODO: 최소 데이터 예외 테스트를 구현하세요")
+        readings = [1, 2]
+        with pytest.raises(ValueError):
+            find_peak_temperatures(readings, 5.0)
+        # pytest.skip("TODO: 최소 데이터 예외 테스트를 구현하세요")
