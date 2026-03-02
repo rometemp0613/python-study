@@ -51,9 +51,19 @@
 - **try/except**: 예외가 발생할 수 있는 코드를 `try`에 넣고, 발생 시 `except`에서 처리. 구체적 예외부터 위에 배치.
 - **else (try문)**: `try` 블록에서 예외가 발생하지 않았을 때만 실행되는 블록. 에러 범위를 좁힐 수 있음.
 - **finally**: `try` 블록의 결과와 상관없이 무조건 실행. 파일 닫기, DB 연결 해제 등 리소스 정리에 사용.
-- **with문 (컨텍스트 매니저)**: `with open(...) as f:` 형태로 리소스를 자동 정리. 블록 끝나면 `close()` 자동 호출, 예외 발생 시에도 안전.
 - **파일 모드 (r/w/a/x)**: `r`=읽기, `w`=쓰기(덮어씀), `a`=추가(이어씀), `x`=배타적 생성(파일 있으면 에러). `w` 모드는 기존 데이터 삭제되므로 주의.
 - **csv.writer / csv.reader**: `csv` 모듈로 CSV 파일 읽기/쓰기. `writerow()`로 한 줄씩, `DictReader`로 컬럼명 기반 접근 가능.
 - **커스텀 예외**: `class MyError(Exception): pass` 형태로 `Exception`을 상속해서 만드는 사용자 정의 예외. 계층 구조로 분류 가능.
 - **raise**: `raise ValueError("메시지")` 형태로 직접 예외를 발생시키는 키워드. 조건 검증 실패 시 사용.
 - **Exception 상속**: 커스텀 예외는 반드시 `Exception` (또는 그 하위 클래스)을 상속. `__init__`에서 속성 추가, `super().__init__(메시지)` 호출.
+
+## 2026-03-02 (모듈, 패키지 & 타입 힌트)
+
+- **모듈 (module)**: Python 파일 하나 = 모듈 하나. `import sensor`로 가져다 쓸 수 있음.
+- **패키지 (package)**: `__init__.py`가 있는 폴더. 여러 모듈을 묶어서 관리. `from equipment import sensor`.
+- **__init__.py**: 폴더를 패키지로 인식시키는 파일. 비어 있어도 됨. 편의 import 등록도 가능.
+- **상대 임포트 (`.`)**: `from .sensor import read_temperature`에서 `.`은 "같은 패키지 안에서"라는 뜻.
+- **`if __name__ == "__main__":`**: 직접 실행할 때만 동작하는 코드 구분. import 시에는 실행 안 됨.
+- **타입 힌트 (type hints)**: `def f(x: int) -> str:` 형태. 실행에 영향 없고 가독성/도구 지원용. mypy로 검사 가능.
+- **Optional**: `Optional[dict]` = dict이거나 None. `typing` 모듈에서 import.
+- **Union / `|`**: `Union[int, float]` 또는 `int | float` (3.10+). 여러 타입 중 하나.
