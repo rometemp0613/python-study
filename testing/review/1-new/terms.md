@@ -21,3 +21,12 @@
 - **-k 옵션**: 테스트 이름 패턴으로 필터링. `pytest -k "alarm and not warning"`은 이름에 alarm 포함, warning 제외한 테스트만 실행
 - **@pytest.mark.parametrize**: 여러 입력값을 리스트로 넣고, 함수에서는 한 번만 assert. 테스트 케이스를 데이터로 관리하는 방식
 - **주요 CLI 옵션**: `-v`(상세), `-x`(첫 실패에서 멈춤), `-s`(print 출력 보기), `--lf`(마지막 실패만 재실행), `-k`(이름 필터)
+
+## 04. 테스트 구조와 프로젝트 조직
+
+- **tests/ 분리형 레이아웃**: 프로덕션 코드(src/)와 테스트 코드(tests/)를 분리하는 권장 구조. 배포 시 테스트 제외 쉬움.
+- **conftest.py**: 같은 디렉토리 + 하위 디렉토리의 모든 테스트에서 import 없이 자동으로 사용 가능한 fixture/hook 정의 파일. 계층 구조로 여러 개 가능.
+- **테스트 네이밍 패턴**: `test_[대상]_[상황]_[기대결과]` 형태. 예: `test_alarm_when_temp_over_80_returns_danger()`.
+- **Test 클래스 주의**: `Test`로 시작해야 하고, `__init__`이 있으면 pytest가 발견 못 함.
+- **addopts (pyproject.toml)**: `[tool.pytest.ini_options]`의 `addopts`에 기본 옵션을 설정하면 매번 안 붙여도 자동 적용. 예: `addopts = "-v --tb=short"`.
+- **fixture scope**: `function`(기본, 테스트마다), `class`, `module`, `session`(전체에서 한 번). 비용 큰 리소스는 scope을 넓게.
