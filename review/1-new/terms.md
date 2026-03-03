@@ -67,3 +67,13 @@
 - **타입 힌트 (type hints)**: `def f(x: int) -> str:` 형태. 실행에 영향 없고 가독성/도구 지원용. mypy로 검사 가능.
 - **Optional**: `Optional[dict]` = dict이거나 None. `typing` 모듈에서 import.
 - **Union / `|`**: `Union[int, float]` 또는 `int | float` (3.10+). 여러 타입 중 하나.
+
+## 2026-03-03 (NumPy 기초)
+
+- **ndarray**: NumPy의 핵심 자료구조. 같은 타입만 저장, 메모리 연속 배치로 리스트보다 10~100배 빠름.
+- **불린 인덱싱**: `arr[arr > 5]`처럼 조건으로 필터링. `&`(and), `|`(or) 사용, 각 조건에 괄호 필수.
+- **벡터 연산 (vectorization)**: 반복문 없이 배열 전체에 연산 적용. `temps * 1.8 + 32` 한 줄로 변환.
+- **브로드캐스팅**: 크기가 다른 배열 간 연산 시 자동으로 shape을 맞춰주는 기능.
+- **axis**: `axis=0`은 행 방향(세로)으로 연산, `axis=1`은 열 방향(가로)으로 연산.
+- **np.arange(start, stop, step)**: 범위 배열 생성. stop은 미포함 (range와 동일 규칙).
+- **np.where(조건, 참값, 거짓값)**: 조건에 따라 다른 값을 넣는 함수. 이상/정상 라벨링에 유용.
