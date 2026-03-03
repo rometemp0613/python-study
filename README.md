@@ -1,13 +1,3 @@
-> **⚠️ 다른 컴퓨터에서 작업 시 주의사항 (2026-02-16)**
->
-> 이 레포는 GitHub contributor 캐시 정리를 위해 **삭제 후 재생성**되었습니다.
-> 다른 컴퓨터에 기존 clone이 있다면 **삭제 후 새로 clone** 해주세요:
-> ```bash
-> rm -rf python-study
-> git clone https://github.com/rometemp0613/python-study.git
-> ```
-> **이 안내는 모든 컴퓨터에서 새로 clone한 후 삭제해주세요.**
-
 # Python 학습 기록 (예지보전 특화)
 
 **학습 방식**: Claude와 함께 실습 중심 학습
@@ -19,6 +9,23 @@
 - "Python for Data Analysis" - Wes McKinney
 - "Hands-On Machine Learning" - Aurélien Géron
 - "Time Series Analysis with Python Cookbook" - Tarek A. Atwan
+
+---
+
+## 과목별 진행 현황
+
+| 과목 | 폴더 | 총 항목 | 완료 | 진행률 |
+|------|------|---------|------|--------|
+| Python 본과목 | `python/` | 49개 | 7개 | 14.3% |
+| Python 테스팅 | `python/testing/` | 37개 | 3개 | 8.1% |
+
+---
+
+## 컨테이너 운영 규칙
+
+- 기본 학습은 `python/` 체크리스트 기준으로 진행한다.
+- 테스트/검증 관련 공통 규칙은 `python/testing/`과 동기화한다.
+- 규칙 전파 후 `./scripts/audit_docs.sh --strict`로 점검한다.
 
 ---
 

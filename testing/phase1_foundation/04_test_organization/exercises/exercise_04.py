@@ -99,22 +99,28 @@ def calculate_equipment_health(readings, optimal_range):
 def sample_equipment():
     """테스트용 설비 정보를 제공한다."""
     # TODO: 설비 정보 딕셔너리를 반환하세요
+    return {
+        "equipment_id": "MOTOR-001",
+        "threshold": 80.0,
+    }
     # 힌트: {"equipment_id": "MOTOR-001", "threshold": 80.0, ...}
-    pytest.skip("TODO: fixture를 구현하세요")
+    # pytest.skip("TODO: fixture를 구현하세요")
 
 
 @pytest.fixture
 def normal_readings():
     """정상 범위의 읽기 데이터를 제공한다."""
     # TODO: 정상 범위의 온도 리스트를 반환하세요
-    pytest.skip("TODO: fixture를 구현하세요")
+    return [30, 45, 50]
+    # pytest.skip("TODO: fixture를 구현하세요")
 
 
 @pytest.fixture
 def critical_readings():
     """위험 범위의 읽기 데이터를 제공한다."""
     # TODO: 임계값 이상의 온도 리스트를 반환하세요
-    pytest.skip("TODO: fixture를 구현하세요")
+    return [85, 90, 95]
+    # pytest.skip("TODO: fixture를 구현하세요")
 
 
 # ============================================================
@@ -124,41 +130,71 @@ def critical_readings():
 class TestCreateMaintenanceSchedule:
     """정비 일정 생성 테스트"""
 
-    def test_긴급정비_생성(self):
+    def test_긴급정비_생성(self, sample_equipment, critical_readings):
         """임계값 이상이면 '긴급정비'를 반환해야 한다"""
+        result = create_maintenance_schedule(
+            sample_equipment["equipment_id"],
+            critical_readings,
+            sample_equipment["threshold"],                   
+        )
+        assert result["action"] == "긴급정비"
         # TODO: 높은 온도 데이터로 테스트
-        pytest.skip("TODO: 긴급정비 테스트를 구현하세요")
+        # pytest.skip("TODO: 긴급정비 테스트를 구현하세요")
 
-    def test_예방정비_생성(self):
+    def test_예방정비_생성(self, sample_equipment):
         """임계값의 80% 이상이면 '예방정비'를 반환해야 한다"""
         # TODO: 임계값의 80~100% 범위 데이터로 테스트
-        pytest.skip("TODO: 예방정비 테스트를 구현하세요")
+        readings = [ 65, 66, 67]
+        result = create_maintenance_schedule(
+            sample_equipment["equipment_id"],
+            readings,
+            sample_equipment["threshold"],                   
+        )
+        assert result["action"] == "예방정비"
+        # pytest.skip("TODO: 예방정비 테스트를 구현하세요")
 
-    def test_정상운전(self):
+    def test_정상운전(self, sample_equipment, normal_readings):
         """임계값의 80% 미만이면 '정상운전'을 반환해야 한다"""
         # TODO: 낮은 온도 데이터로 테스트
-        pytest.skip("TODO: 정상운전 테스트를 구현하세요")
+        result = create_maintenance_schedule(
+            sample_equipment["equipment_id"],
+            normal_readings,
+            sample_equipment["threshold"],                   
+        )
+        assert result["action"] == "정상운전"
+        # pytest.skip("TODO: 정상운전 테스트를 구현하세요")
 
-    def test_빈_데이터_예외(self):
+    def test_빈_데이터_예외(self, sample_equipment):
         """빈 데이터에 대해 ValueError가 발생해야 한다"""
         # TODO: pytest.raises 사용
-        pytest.skip("TODO: 빈 데이터 예외 테스트를 구현하세요")
+        with pytest.raises(ValueError):
+            create_maintenance_schedule(
+                sample_equipment["equipment_id"],
+                [],
+                sample_equipment["threshold"],                   
+            )
+        # pytest.skip("TODO: 빈 데이터 예외 테스트를 구현하세요")
 
 
 class TestCalculateEquipmentHealth:
     """설비 건강도 계산 테스트"""
+    
+    optimal = (60, 80)
 
     def test_최적_범위_내(self):
         """최적 범위 내의 값이면 건강도 100%"""
         # TODO: 최적 범위 내의 데이터로 테스트
-        pytest.skip("TODO: 최적 범위 건강도 테스트를 구현하세요")
+        assert calculate_equipment_health([65, 67, 69], self.optimal) == 100
+        # pytest.skip("TODO: 최적 범위 건강도 테스트를 구현하세요")
 
     def test_범위_밖_건강도_감소(self):
         """최적 범위 밖이면 건강도가 감소해야 한다"""
         # TODO: 최적 범위 밖의 데이터로 테스트
-        pytest.skip("TODO: 건강도 감소 테스트를 구현하세요")
+        assert calculate_equipment_health([40, 60, 50], self.optimal) < 100 
+        # pytest.skip("TODO: 건강도 감소 테스트를 구현하세요")
 
     def test_빈_데이터_건강도_0(self):
         """빈 데이터에 대해 건강도 0을 반환해야 한다"""
+        assert calculate_equipment_health([], self.optimal) == 0
         # TODO: 빈 리스트로 테스트
-        pytest.skip("TODO: 빈 데이터 건강도 테스트를 구현하세요")
+        # pytest.skip("TODO: 빈 데이터 건강도 테스트를 구현하세요")
